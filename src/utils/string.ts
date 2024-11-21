@@ -1,20 +1,20 @@
 export type OptionalString = string | null | undefined;
 
 export const MapToOptionalString = (string: string): OptionalString => {
-  return string;
+    return string;
 };
 
 export const MapToString = (
-  oString: OptionalString,
-  defaultVal?: string
+    oString: OptionalString,
+    defaultVal?: string
 ): string => {
-  if (!IsValidString(oString)) {
-    return defaultVal ?? "";
-  }
+    if (!IsValidString(oString)) {
+        return defaultVal ?? "";
+    }
 
-  return String(oString);
+    return String(oString);
 };
 
 export const IsValidString = (oString: OptionalString): boolean => {
-  return oString != null && oString != undefined;
+    return oString != null && oString != undefined;
 };

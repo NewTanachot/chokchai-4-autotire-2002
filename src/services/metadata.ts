@@ -1,32 +1,55 @@
-import { DefaultLang, Locale, UserLangCookieKey } from "../common/metadata";
+import {
+    DefaultUserLang,
+    Locale,
+    UserLang,
+    UserLangCookieKey,
+} from "../common/metadata";
 import { GetMetaDataFromJSON } from "../repositories/metadata";
 import { cookies } from "next/headers";
 import { IsValidUserLang } from "../validator/metadata";
+import axios from "axios";
+import { IsSuccessStatusCode } from "../common/httpkit";
+import cfg from "../config/envconfig";
 
 // Metadata
 export const GetMetaData = () => GetMetaDataFromJSON();
 
 // Cockie
-const cookieObj = await cookies();
 
-export const GetUserLang = async (): Promise<Locale> => {
-  let lang = cookieObj.get(UserLangCookieKey)?.value;
-  if (!IsValidUserLang(lang)) {
-    lang = DefaultLang;
-  }
+export const GetUserLangFromCookie = async (): Promise<Locale> => {
+    const cookie = await cookies();
+    let lang = cookie.get(UserLangCookieKey)?.value;
+    if (!IsValidUserLang(lang)) {
+        lang = DefaultUserLang;
+    }
 
-  return lang as Locale;
+    return lang as Locale;
 };
 
-export const SetUserLang = (lang: Locale): void => {
-  if (!IsValidUserLang(lang)) {
-    throw new Error("[SetUserLang]: invalid user lang");
-  }
+export const SetUserLangCookieToBrowser = async (
+    lang: Locale
+): Promise<void> => {
+    if (!IsValidUserLang(lang)) {
+        throw new Error("[SetUserLang]: invalid user lang");
+    }
 
-  cookieObj.set(UserLangCookieKey, lang);
+    const body: UserLang = {
+        lang: lang,
+    };
+
+    const url = cfg.BASE_URL_API + cfg.SET_USER_LANG_TO_COOKIE_PATH;
+    const response = await axios.post(url, body);
+
+    if (!IsSuccessStatusCode(response.status)) {
+        throw new Error(
+            `[SetUserLang]: cannot set user lang to cookie, ${response.status} ${response.statusText}: ${response.data}`
+        );
+    }
 };
 
-export const IsUserLangConfigExist = (): boolean => {
-  let lang = cookieObj.get(UserLangCookieKey)?.value;
-  return IsValidUserLang(lang);
+export const IsUserLangConfigExist = async (): Promise<boolean> => {
+    const cookie = await cookies();
+    const lang = cookie.get(UserLangCookieKey)?.value;
+
+    return IsValidUserLang(lang);
 };
