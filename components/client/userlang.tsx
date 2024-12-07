@@ -28,7 +28,7 @@ export default function SetUserLangCookieToBrowserClientAndRedirect() {
         const preferLang = GetUserBrowserPreferlang();
         SetUserLangCookieToBrowser(preferLang);
         router.push(`/${preferLang}`);
-    }, []);
+    });
 
     return null;
 }

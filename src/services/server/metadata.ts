@@ -2,7 +2,6 @@ import { Metadata } from "next";
 import {
     DefaultUserLang,
     Locale,
-    TH,
     UserLangCookieKey,
 } from "../../common/metadata";
 import { GetMetaDataFromJSON } from "../../repositories/metadata";
@@ -12,7 +11,7 @@ import { OptionalString } from "../../utils/string";
 
 // Metadata
 export const NewMetadata = (lang: Locale): Metadata => {
-    const data = GetMetaDataFromJSON() 
+    const data = GetMetaDataFromJSON();
 
     return {
         title: data.title[lang],
