@@ -1,8 +1,9 @@
-import type { Metadata } from "next";
-import localFont from "next/font/local";
-import "./globals.css";
-import { GetMetaData } from "@/src/services/metadata";
+import React from "react";
 import { TH } from "@/src/common/metadata";
+import "./globals.css";
+import localFont from "next/font/local";
+import { Metadata } from "next";
+import { NewMetadata } from "@/src/services/server/metadata";
 
 const jetBrainsMono = localFont({
     src: "../public/fonts/JetBrainsMono-Regular.woff2",
@@ -10,22 +11,17 @@ const jetBrainsMono = localFont({
     //   weight: "100 900",
 });
 
-const data = GetMetaData();
-export const metadata: Metadata = {
-    title: data.title[TH],
-    description: data.description[TH],
-};
+export const metadata: Metadata = NewMetadata(TH);
 
-export default function RootLayout({
+export default async function RootLayout({
     children,
 }: Readonly<{
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en">
+        <html lang={TH}>
             <body className={`${jetBrainsMono.className} antialiased`}>
                 {children}
-                <p>Chokchai 4 is my company</p>
             </body>
         </html>
     );
