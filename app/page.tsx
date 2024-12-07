@@ -1,14 +1,14 @@
-import { Metadata } from "next";
+import SetUserLangCookieToBrowserClientAndRedirect from "@/components/client/userlang";
+import { GetUserLangFromCookie } from "@/src/services/server/metadata";
+import { redirect } from "next/navigation";
 
-export const metadata: Metadata = {
-    title: "ไทย",
-    description: "test",
-};
+export default async function Gateway() {
+    const lang = await GetUserLangFromCookie();
+    if (lang) {
+        redirect(`/${lang}`);
+    }
 
-export default async function Home() {
     return (
-        <>
-            <div className="btn btn-square">Hellop</div>
-        </>
+        <SetUserLangCookieToBrowserClientAndRedirect></SetUserLangCookieToBrowserClientAndRedirect>
     );
 }
