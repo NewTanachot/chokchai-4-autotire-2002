@@ -8,6 +8,17 @@ export const DefaultUserLang: Locale = TH;
 export const ValidUserLang = new Set<string>([EN, TH]);
 export const UserLangCookieKey = "COOKIE_KEY_USER_LANG";
 
+export const GetLocaleEnum = (lang: string): Locale => {
+    switch (lang) {
+        case "en":
+            return EN;
+        case "th":
+            return TH;
+        default:
+            return DefaultUserLang;
+    }
+};
+
 export interface UserLang {
     lang: Locale;
 }

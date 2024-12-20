@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useLayoutEffect } from "react";
 import { DefaultUserLang, EN, Locale, TH } from "@/src/common/metadata";
 import { useRouter } from "next/navigation";
 import { SetUserLangCookieToBrowser } from "@/src/services/client/metadata";
@@ -24,7 +24,7 @@ const GetUserBrowserPreferlang = (): Locale => {
 export default function SetUserLangCookieToBrowserClientAndRedirect() {
     const router = useRouter();
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         const preferLang = GetUserBrowserPreferlang();
         SetUserLangCookieToBrowser(preferLang);
         router.push(`/${preferLang}`);
