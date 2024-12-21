@@ -1,4 +1,4 @@
-import AppParams from "@/components/params";
+import { AppParams, ParamsValue } from "@/components/params";
 import { GetLocaleEnum } from "@/src/common/metadata";
 import { NewMetadata } from "@/src/services/server/metadata";
 
@@ -14,13 +14,11 @@ export default async function LayoutHome({
     params,
 }: Readonly<{
     children: React.ReactNode;
-    params: AppParams["params"];
+    params: Promise<ParamsValue>;
 }>) {
     const { lang } = await params;
     console.log(lang);
     const userLang = GetLocaleEnum(lang);
 
     return <div lang={userLang}>{children}</div>;
-
-    // return <div lang="en">{children}</div>;
 }

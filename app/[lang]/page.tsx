@@ -1,4 +1,4 @@
-import AppParams from "@/components/params";
+import { AppParams } from "@/components/params";
 import { GetLocaleEnum } from "@/src/common/metadata";
 
 export default async function Home({ params }: AppParams) {
