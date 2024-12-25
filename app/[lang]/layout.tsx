@@ -17,7 +17,6 @@ export default async function LayoutHome({
     params: Promise<ParamsValue>;
 }>) {
     const { lang } = await params;
-    console.log(lang);
     const userLang = GetLocaleEnum(lang);
 
     return <div lang={userLang}>{children}</div>;
