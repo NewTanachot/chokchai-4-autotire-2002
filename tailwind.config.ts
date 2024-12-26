@@ -7,13 +7,9 @@ export default {
         "./components/**/*.{js,ts,jsx,tsx,mdx}",
         "./app/**/*.{js,ts,jsx,tsx,mdx}",
     ],
-    theme: {
-        extend: {
-            //   colors: {
-            //     background: "var(--background)",
-            //     foreground: "var(--foreground)",
-            //   },
-        },
+    // daisyUI config - (https://daisyui.com/docs/config/)
+    daisyui: {
+        themes: false,
     },
     plugins: [daisyui],
 } satisfies Config;

@@ -1,4 +1,5 @@
 import { AppParams, ParamsValue } from "@/components/params";
+import NavBar from "@/components/server/navbar";
 import { GetLocaleEnum } from "@/src/common/metadata";
 import { NewMetadata } from "@/src/services/server/metadata";
 
@@ -19,5 +20,10 @@ export default async function LayoutHome({
     const { lang } = await params;
     const userLang = GetLocaleEnum(lang);
 
-    return <div lang={userLang}>{children}</div>;
+    return (
+        <div lang={userLang}>
+            <NavBar lang={userLang}></NavBar>
+            {children}
+        </div>
+    );
 }
