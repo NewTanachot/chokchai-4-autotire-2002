@@ -1,5 +1,4 @@
-import { json } from "node:stream/consumers";
-import { StatusCode } from "./constant";
+import { StatusCode } from "./httpkit";
 
 export interface ErrorInfo {
     code: StatusCode;

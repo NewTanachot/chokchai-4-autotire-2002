@@ -1,6 +1,6 @@
 import { LocaleString } from "@/src/common/string";
 import { NewErrorInfoString } from "./error";
-import { StatusCode } from "./constant";
+import { StatusCode } from "./httpkit";
 
 export type Locale = "en" | "th";
 
