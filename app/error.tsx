@@ -1,12 +1,9 @@
 "use client";
 
+import { AppParams } from "@/components/params";
 import { ParseToErrorInfoObject } from "@/src/common/error";
 
-export default function GlobalError({
-    error,
-}: {
-    error: Error & { digest?: string };
-}) {
+export default function GlobalError({ error }: AppParams) {
     const errDetail = ParseToErrorInfoObject(error.message);
     return (
         <div className="text-center">

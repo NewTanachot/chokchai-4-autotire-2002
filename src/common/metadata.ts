@@ -1,6 +1,6 @@
 import { LocaleString } from "@/src/common/string";
-import { NewErrorInfoString } from "./error";
 import { StatusCode } from "./httpkit";
+import { NewError } from "./error";
 
 export type Locale = "en" | "th";
 
@@ -17,11 +17,9 @@ export const GetLocaleEnum = (lang: string): Locale => {
         case "th":
             return TH;
         default:
-            throw Error(
-                NewErrorInfoString(
-                    StatusCode.BadRequest,
-                    `${lang} lang is not support`
-                )
+            throw NewError(
+                StatusCode.BadRequest,
+                `${lang} lang is not support`
             );
     }
 };

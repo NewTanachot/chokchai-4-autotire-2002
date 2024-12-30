@@ -14,12 +14,9 @@ const NewErrorInfo = (code: StatusCode, message: string): ErrorInfo => {
     };
 };
 
-export const NewErrorInfoString = (
-    code: StatusCode,
-    message: string
-): string => {
-    const errMsg = NewErrorInfo(code, message);
-    return JSON.stringify(errMsg);
+export const NewError = (code: StatusCode, message: string): Error => {
+    const errMsg = JSON.stringify(NewErrorInfo(code, message));
+    return new Error(errMsg);
 };
 
 export const ParseToErrorInfoObject = (errStr: string): ErrorInfo => {

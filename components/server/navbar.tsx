@@ -76,7 +76,7 @@ export default function NavBar(param: ParamsValue) {
                 </ul>
             </div>
             <div className="navbar-end">
-                <a className="btn">Button</a>
+                <a className="btn">lang switch btn</a>
             </div>
         </nav>
     );
